@@ -1,4 +1,4 @@
-# 🎯 PlatformIO 彩色调试日志库（debug_log.h）
+# 🎯 PlatformIO 彩色调试日志库（serial.color.debug）
 
 > 一个轻量、支持彩色输出的日志调试宏头文件，适用于 ESP32 / ESP8266 / Arduino 等平台。
 
