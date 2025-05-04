@@ -1,5 +1,5 @@
 #include <Arduino.h>  // Arduino核心库
-#include "debug_log.h"
+#include "serial_color_debug.h"
 
 // setup()函数：初始化系统
 void setup() {
