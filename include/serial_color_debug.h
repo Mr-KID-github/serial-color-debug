@@ -18,19 +18,18 @@
   #define DEBUG_PRINTLN(x)     Serial.println(x)
   #define DEBUG_PRINTF(...)    Serial.printf(__VA_ARGS__)
 
-  // ✅ 文本日志输出（非格式化）
-  // 用 print + println + ANSI_RESET，确保颜色不会泄漏到下一行
-  #define DEBUG_INFO(msg)     do { Serial.print(ANSI_GREEN  "[INFO]  ✅ "); Serial.print(msg); Serial.println(ANSI_RESET); } while (0)
-  #define DEBUG_STATUS(msg)   do { Serial.print(ANSI_CYAN   "[STAT]  📶 "); Serial.print(msg); Serial.println(ANSI_RESET); } while (0)
-  #define DEBUG_WARN(msg)     do { Serial.print(ANSI_YELLOW "[WARN]  ⚠️  "); Serial.print(msg); Serial.println(ANSI_RESET); } while (0)
-  #define DEBUG_ERROR(msg)    do { Serial.print(ANSI_RED    "[ERROR] 💥 "); Serial.print(msg); Serial.println(ANSI_RESET); } while (0)
+  // ✅ 文本日志输出（非格式化，字符串常量使用 F() 宏节省 Flash）
+  #define DEBUG_INFO(msg)     do { Serial.print(F(ANSI_GREEN  "[INFO]  ✅ ")); Serial.print(F(msg)); Serial.println(F(ANSI_RESET)); } while (0)
+  #define DEBUG_STATUS(msg)   do { Serial.print(F(ANSI_CYAN   "[STAT]  📶 ")); Serial.print(F(msg)); Serial.println(F(ANSI_RESET)); } while (0)
+  #define DEBUG_WARN(msg)     do { Serial.print(F(ANSI_YELLOW "[WARN]  ⚠️  ")); Serial.print(F(msg)); Serial.println(F(ANSI_RESET)); } while (0)
+  #define DEBUG_ERROR(msg)    do { Serial.print(F(ANSI_RED    "[ERROR] 💥 ")); Serial.print(F(msg)); Serial.println(F(ANSI_RESET)); } while (0)
 
   // ✅ 格式化日志输出（printf 风格 + 颜色 + 重置）
-  // 把 ANSI_RESET 放在格式字符串末尾，避免颜色影响下一行
-  #define DEBUG_INFOF(fmt, ...)     do { Serial.print(ANSI_GREEN  "[INFO]  ✅ "); Serial.printf(fmt, ##__VA_ARGS__); Serial.println(ANSI_RESET); } while (0)
-  #define DEBUG_STATUSF(fmt, ...)   do { Serial.print(ANSI_CYAN   "[STAT]  📶 "); Serial.printf(fmt, ##__VA_ARGS__); Serial.println(ANSI_RESET); } while (0)
-  #define DEBUG_WARNF(fmt, ...)     do { Serial.print(ANSI_YELLOW "[WARN]  ⚠️  "); Serial.printf(fmt, ##__VA_ARGS__); Serial.println(ANSI_RESET); } while (0)
-  #define DEBUG_ERRORF(fmt, ...)    do { Serial.print(ANSI_RED    "[ERROR] 💥 "); Serial.printf(fmt, ##__VA_ARGS__); Serial.println(ANSI_RESET); } while (0)
+  // 字符串格式符仍在 Flash 中；如果需要进一步优化可使用 printf_P + PSTR()
+  #define DEBUG_INFOF(fmt, ...)     do { Serial.print(F(ANSI_GREEN  "[INFO]  ✅ ")); Serial.printf(fmt, ##__VA_ARGS__); Serial.println(F(ANSI_RESET)); } while (0)
+  #define DEBUG_STATUSF(fmt, ...)   do { Serial.print(F(ANSI_CYAN   "[STAT]  📶 ")); Serial.printf(fmt, ##__VA_ARGS__); Serial.println(F(ANSI_RESET)); } while (0)
+  #define DEBUG_WARNF(fmt, ...)     do { Serial.print(F(ANSI_YELLOW "[WARN]  ⚠️  ")); Serial.printf(fmt, ##__VA_ARGS__); Serial.println(F(ANSI_RESET)); } while (0)
+  #define DEBUG_ERRORF(fmt, ...)    do { Serial.print(F(ANSI_RED    "[ERROR] 💥 ")); Serial.printf(fmt, ##__VA_ARGS__); Serial.println(F(ANSI_RESET)); } while (0)
   
 #else
 
